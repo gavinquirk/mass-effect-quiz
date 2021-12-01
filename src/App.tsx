@@ -45,9 +45,12 @@ const App = () => {
   return (
     <div className='App'>
       <h1>Mass Effect Quiz</h1>
-      <button className='start' onClick={startQuiz}>
-        Start
-      </button>
+      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+        <button className='start' onClick={startQuiz}>
+          Start
+        </button>
+      ) : null}
+
       <p className='score'>Score:</p>
       <p>Loading Questions...</p>
       <QuestionCard
