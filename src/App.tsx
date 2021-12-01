@@ -3,14 +3,14 @@ import { fetchQuizQuestions } from './API';
 import QuestionCard from './components/QuestionCard';
 
 // Types
-import {QuestionState, Difficulty } from './API';
+import { QuestionState, Difficulty } from './API';
 
 type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
   correctAnswer: string;
-}
+};
 
 const TOTAL_QUESTIONS = 10;
 
@@ -20,28 +20,35 @@ const App = () => {
   const [number, setNumber] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
-  const [gameOver, setGameOver] = useState(true)
-
+  const [gameOver, setGameOver] = useState(true);
 
   const startQuiz = async () => {
+    setLoading(true);
+    setGameOver(false);
 
-  }
+    const newQuestions = await fetchQuizQuestions(
+      TOTAL_QUESTIONS,
+      Difficulty.EASY
+    );
 
-  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setQuestions(newQuestions);
+    setScore(0);
+    setUserAnswers([]);
+    setNumber(0);
+    setLoading(false);
+  };
 
-  }
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {};
 
-  const nextQuestion = () => {
-
-  }
+  const nextQuestion = () => {};
 
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Mass Effect Quiz</h1>
-      <button className="start" onClick={startQuiz}>
+      <button className='start' onClick={startQuiz}>
         Start
       </button>
-      <p className="score">Score:</p>
+      <p className='score'>Score:</p>
       <p>Loading Questions...</p>
       <QuestionCard
         questionNumber={number + 1}
@@ -51,9 +58,11 @@ const App = () => {
         userAnswer={userAnswers ? userAnswers[number] : undefined}
         callback={checkAnswer}
       />
-      <button className="next" onClick={nextQuestion}>Next Question</button>
+      <button className='next' onClick={nextQuestion}>
+        Next Question
+      </button>
     </div>
   );
-}
+};
 
 export default App;
