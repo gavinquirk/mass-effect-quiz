@@ -3,7 +3,8 @@ import { fetchQuizQuestions } from './API';
 import QuestionCard from './components/QuestionCard';
 
 // Styles
-import {GlobalStyles} from './App.styles'
+import {GlobalStyles, Wrapper} from './App.styles'
+
 
 // Types
 import { QuestionState, Difficulty } from './API';
@@ -74,7 +75,7 @@ const App = () => {
   return (
     <>
     <GlobalStyles />
-    <div className='App'>
+    <Wrapper>
       <h1>Typescript Quiz</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
         <button className='start' onClick={startQuiz}>
@@ -98,7 +99,7 @@ const App = () => {
         Next Question
       </button>
       ) : null}
-    </div>
+    </Wrapper>
     </>
   );
 };
