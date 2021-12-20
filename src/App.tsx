@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { fetchQuizQuestions } from './API';
 import QuestionCard from './components/QuestionCard';
 
+// Styles
+import {GlobalStyles} from './App.styles'
+
 // Types
 import { QuestionState, Difficulty } from './API';
 
@@ -69,8 +72,10 @@ const App = () => {
   };
 
   return (
+    <>
+    <GlobalStyles />
     <div className='App'>
-      <h1>Mass Effect Quiz</h1>
+      <h1>Typescript Quiz</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
         <button className='start' onClick={startQuiz}>
           Start
@@ -93,9 +98,8 @@ const App = () => {
         Next Question
       </button>
       ) : null}
-
-
     </div>
+    </>
   );
 };
 
